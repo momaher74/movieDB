@@ -5,16 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cubit/app_cubit.dart';
 import '../constants/constant.dart';
 
-class AllTrendingWidget extends StatelessWidget {
-  const AllTrendingWidget({Key? key}) : super(key: key);
+class AllTopRatedWidget extends StatelessWidget {
+  const AllTopRatedWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var cubit = AppCubit.get(context);
     var textTheme = Theme.of(context).textTheme;
     return BlocConsumer<AppCubit, AppState>(
-      listener: (context, state) {},
-      builder: (context, state) {
+      listener: (BuildContext context, state) {},
+      builder: (BuildContext context, Object? state) {
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -27,7 +27,7 @@ class AllTrendingWidget extends StatelessWidget {
               ),
             ),
             title: Text(
-              "Trending now",
+              "Top rating",
               style: textTheme.titleLarge,
             ),
           ),
@@ -35,7 +35,7 @@ class AllTrendingWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 10,
+                height: 20,
               ),
               ConditionalBuilder(
                 fallback: (BuildContext context) => const Center(
@@ -44,14 +44,14 @@ class AllTrendingWidget extends StatelessWidget {
                     backgroundColor: Colors.grey,
                   ),
                 ),
-                condition: cubit.trendModel != null,
+                condition: cubit.topRatedModel != null,
                 builder: (BuildContext context) {
                   return Expanded(
                     child: GridView.builder(
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.vertical,
                       itemBuilder: (BuildContext context, int index) {
-                        var trendItem = cubit.trendModel!.results![index];
+                        var topRatedItem = cubit.topRatedModel!.results[index];
                         return SizedBox(
                           width: 200,
                           height: 300,
@@ -64,7 +64,7 @@ class AllTrendingWidget extends StatelessWidget {
                                     Image(
                                       image: NetworkImage(
                                         imgPath +
-                                            trendItem.posterPath.toString(),
+                                            topRatedItem.posterPath.toString(),
                                       ),
                                       width: 200,
                                       height: 220,
@@ -84,9 +84,7 @@ class AllTrendingWidget extends StatelessWidget {
                                             color: Colors.yellow,
                                           ),
                                           Text(
-                                            trendItem.voteAverage
-                                                .toString()
-                                                .substring(0, 3),
+                                            topRatedItem.voteAverage.toString(),
                                             style: textTheme.subtitle1,
                                           ),
                                         ],
@@ -97,9 +95,7 @@ class AllTrendingWidget extends StatelessWidget {
                                 const Spacer(),
                                 Expanded(
                                   child: Text(
-                                    trendItem.title.toString() == "null"
-                                        ? "trending now"
-                                        : trendItem.title.toString(),
+                                    topRatedItem.title,
                                     style:
                                         Theme.of(context).textTheme.titleLarge,
                                   ),
@@ -112,7 +108,7 @@ class AllTrendingWidget extends StatelessWidget {
                           ),
                         );
                       },
-                      itemCount: cubit.trendModel!.results!.length,
+                      itemCount: cubit.topRatedModel!.results.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:listenerrrr/cubit/app_cubit.dart';
-import 'package:listenerrrr/homescreen.dart';
+import 'package:listenerrrr/screens/homescreen.dart';
 
 import 'network/remote.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AppCubit>(
-      create: (context)=>AppCubit()..getTopRated()..getTrendRated(),
+      create: (context)=>AppCubit()..getTrendRated()..getTopRated(),
       child: BlocConsumer<AppCubit,AppState>(
         listener: (context,state){},
         builder: (context,state){
@@ -36,13 +36,19 @@ class MyApp extends StatelessWidget {
                 )
             ),
             theme: ThemeData(
+              iconTheme: const IconThemeData(
+                color: Colors.black ,
+              ),
+              primaryIconTheme: const IconThemeData(
+                color: Colors.black
+              ),
               scaffoldBackgroundColor: Colors.white,
               appBarTheme: const AppBarTheme(
                 color: Colors.white ,
                 elevation: 1 ,
               )
             ),
-            home: const HomeScreen(),
+            home:  const HomeScreen(),
           ) ;
         },
       ),

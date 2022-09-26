@@ -43,7 +43,7 @@ class AppCubit extends Cubit<AppState> {
     }).then((value) {
       trendModel = TrendModel.fromJson(value.data);
       // print(value.data);
-      print(trendModel!.results![2].title);
+      // print(trendModel!.results![2].title);
       emit(GetTopTrendSuccessState());
     }).catchError((error) {
       print("error" + error.toString());
@@ -149,5 +149,4 @@ class AppCubit extends Cubit<AppState> {
       emit(SearchMovieErrorState());
     });
   }
-
 }

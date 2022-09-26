@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 String imgPath = "http://image.tmdb.org/t/p/w500";
 
 String apiKey = "e7ab8828e10d222536f4db0486b578ac";
@@ -7,3 +9,9 @@ String accessToken =
 
 String imgUrl =
     "https://img.freepik.com/premium-vector/mosque-logo-template-islamic-concept-design-creative-symbol_487414-2194.jpg";
+
+void push({required BuildContext context, required Widget screen}) {
+  Navigator.of(context).push(
+    MaterialPageRoute(builder: (context) => screen),
+  );
+}

@@ -14,11 +14,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    var cubit = AppCubit.get(context);
+    // var cubit = AppCubit.get(context);
+    // var textTheme = Theme.of(context).textTheme;
+
     return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) {},
       builder: (context, state) {
-        var textTheme = Theme.of(context).textTheme;
         return Scaffold(
           appBar: AppBar(
             title: const Text(
